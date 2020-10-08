@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 
     private Dictionary<string, Sound> _soundsDictionary;
 
+    
     public static AudioManager Instance { get; private set; }
 
     private void Awake()
@@ -44,24 +45,21 @@ public class AudioManager : MonoBehaviour
         Play(soundName, 1f);
     }
     
-    /// <param name="volume">0 1range</param>
+    /// <param name="volume">0 1 range</param>
     public void Play(string soundName, float volume)
     {
         if (_soundsDictionary.ContainsKey(soundName))
         {
             if (!_soundsDictionary[soundName].source.isPlaying)
             {
-                //volume = HelperFunctions.RangeToRange(volume, 0f, 1f, -80f, 0f);
                 _soundsDictionary[soundName].source.volume = volume * _soundsDictionary[soundName].volume;
                 _soundsDictionary[soundName].source.Play();
             }
         }
-#if UNITY_EDITOR
         else
         {
             Debug.Log($"No sound with name {soundName}");
         }
-#endif
     }
     
     public void PlayWithOverlay(string soundName)
@@ -76,12 +74,10 @@ public class AudioManager : MonoBehaviour
             _soundsDictionary[soundName].source.volume = volume * _soundsDictionary[soundName].volume;
             _soundsDictionary[soundName].source.Play();
         }
-#if UNITY_EDITOR
         else
         {
             Debug.Log($"No sound with name {soundName}");
         }
-#endif
     }
     
     public void Pause(string soundName)
@@ -90,12 +86,10 @@ public class AudioManager : MonoBehaviour
         {
             _soundsDictionary[soundName].source.Pause();
         }
-#if UNITY_EDITOR
         else
         {
             Debug.Log($"No sound with name {soundName}");
         }
-#endif
     }
     
     public void UnPause(string soundName)
@@ -104,12 +98,10 @@ public class AudioManager : MonoBehaviour
         {
             _soundsDictionary[soundName].source.UnPause();
         }
-#if UNITY_EDITOR
         else
         {
             Debug.Log($"No sound with name {soundName}");
         }
-#endif
     }
 
     public void Stop(string soundName)
@@ -118,11 +110,9 @@ public class AudioManager : MonoBehaviour
         {
             _soundsDictionary[soundName].source.Stop();
         }
-#if UNITY_EDITOR
         else
         {
             Debug.Log($"No sound with name {soundName}");
         }
-#endif
     }
 }

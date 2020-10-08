@@ -8,6 +8,7 @@ public class BoardData
 
     public Cell[,] Cells => (Cell[,])_cells.Clone();
 
+    
     public BoardData()
     {
         _cells = new Cell[8,8];

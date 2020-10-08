@@ -33,13 +33,13 @@ public class TurnManager : MonoBehaviour
     {
         if (_firstPlayerTurn)
         {
-            _first.StartTurn(_boardData.Cells);
             _first.OnDoTurn += HandleDoTurn;
+            _first.StartTurn(_boardData.Cells);
         }
         else
         {
-            _second.StartTurn(_boardData.Cells);
             _second.OnDoTurn += HandleDoTurn;
+            _second.StartTurn(_boardData.Cells);
         }
     }
     

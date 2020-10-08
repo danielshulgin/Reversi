@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class MainMenuUI : MonoBehaviour
@@ -8,8 +9,9 @@ public class MainMenuUI : MonoBehaviour
     
     [SerializeField] private GameObject PvEContur;
     
-    [SerializeField] private GameObject MainmenuPanel;
+    [FormerlySerializedAs("MainmenuPanel")] [SerializeField] private GameObject mainMenuPanel;
 
+    
     private void Start()
     {
         var PvP = GameConfiguration.Instance.GameType == GameType.PvP;
@@ -22,12 +24,12 @@ public class MainMenuUI : MonoBehaviour
 
     private void HandleStartGame()
     {
-        MainmenuPanel.gameObject.SetActive(false);
+        mainMenuPanel.gameObject.SetActive(false);
     }
     
     private void HandleEndGame()
     {
-        MainmenuPanel.gameObject.SetActive(true);
+        mainMenuPanel.gameObject.SetActive(true);
     }
 
     public void HandleStartGameButtonClick()

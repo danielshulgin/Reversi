@@ -131,7 +131,7 @@ public class ReversiRules
         }
         if (firstPlayerChipCount < secondPlayerChipCount)
         {
-            return GameResultType.FirstWon;
+            return GameResultType.SecondWon;
         }
         return GameResultType.Draw;
     }

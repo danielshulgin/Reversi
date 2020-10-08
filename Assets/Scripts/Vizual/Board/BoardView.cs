@@ -17,7 +17,7 @@ public class BoardView : MonoBehaviour
     
     private Vector3 _boxColliderOffset;
 
-    private List<GameObject> oldCells = new List<GameObject>();
+    private List<GameObject> _chips = new List<GameObject>();
 
     
     private void Awake()
@@ -33,11 +33,11 @@ public class BoardView : MonoBehaviour
 
     public void HandleUpdateBoard(Cell[,] cells)
     {
-        foreach (var oldCell in oldCells)
+        foreach (var oldCell in _chips)
         {
             Destroy(oldCell);
         }
-        oldCells.Clear();
+        _chips.Clear();
         
         foreach (var cell in cells)
         {
@@ -48,7 +48,7 @@ public class BoardView : MonoBehaviour
             var cellPrefab = cell.cellOwner == CellOwner.First ? firstPlayerCellPrefab : secondPlayerCellPrefab;
             var newChip = Instantiate(cellPrefab, transform);
             newChip.transform.position = _boxColliderOffset + new Vector3(cell.x * _boardWidth / 8f, 0f, cell.y * _boardHeight / 8f);
-            oldCells.Add(newChip);
+            _chips.Add(newChip);
         }
     }
 }

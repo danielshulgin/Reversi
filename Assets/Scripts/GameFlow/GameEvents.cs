@@ -9,6 +9,7 @@ public class GameEvents : MonoBehaviour
     
     public static event Action OnEndGame;
 
+    
     public static GameEvents Instance { get; private set; }
 
     private void Awake()

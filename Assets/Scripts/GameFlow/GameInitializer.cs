@@ -9,10 +9,12 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private RealPlayer firstRealPlayer;
     
     [SerializeField] private RealPlayer secondRealPlayer;
-    
+
     [SerializeField] private BoardView bordView;
     
     private BoardData _bordData;
+    
+    private AIPlayer _aiPlayer;
     
         
     public static GameInitializer Instance { get; private set; }
@@ -45,11 +47,17 @@ public class GameInitializer : MonoBehaviour
         {
             firstRealPlayer.Initialize(true);
             secondRealPlayer.Initialize(false);
-
-            turnManager.Initialize(firstRealPlayer, secondRealPlayer, _bordData); 
-            turnManager.StartGame();
-            GameEvents.Instance.SendStartGame();
+            turnManager.Initialize(firstRealPlayer, secondRealPlayer, _bordData);
         }
+        else
+        {
+            firstRealPlayer.Initialize(true);
+            _aiPlayer = new AIPlayer();
+            _aiPlayer.Initialize(false);
+            turnManager.Initialize(firstRealPlayer, _aiPlayer, _bordData);
+        }
+        turnManager.StartGame();
+        GameEvents.Instance.SendStartGame();
     }
 
     private void HandleEndGame()
