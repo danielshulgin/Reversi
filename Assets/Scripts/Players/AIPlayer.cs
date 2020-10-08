@@ -22,7 +22,13 @@ public class AIPlayer : IPlayer
 
         foreach (var cell in possibleCells)
         {
-            cellValue[cell] = 1;
+            var value = 0;
+            var rivalLines = ReversiRules.GetRivalLinesAroundCell(currentBordData, cell.x, cell.y, _firstPlayer);
+            foreach (var rivalLine in rivalLines)
+            {
+                value += rivalLine.Count;
+            }
+            cellValue[cell] = value;
         }
 
         var optimalTurn = possibleCells.First();
